@@ -7,10 +7,10 @@
 
 import Foundation
 
-class Dice {
+struct Dice {
     var point: Int = 1
     
-    func rollDice() {
+    mutating func rollDice() {
         point = Int.random(in: 1...6)
     }
 }
@@ -21,15 +21,19 @@ class DiceGame {
         dices.count
     }
     
-    var dices: [Dice]
+    var dicesNumber: [Int] {
+        dices.map { $0.point }
+    }
+    
+    private var dices: [Dice]
     
     init(numberOfDice: Int) {
         dices = [Dice](repeating: Dice(), count: numberOfDice)
     }
     
     public func rollDices() {
-        dices.forEach { dice in
-            dice.rollDice()
+        dices.indices.forEach { index in
+            dices[index].rollDice()
         }
     }
 }

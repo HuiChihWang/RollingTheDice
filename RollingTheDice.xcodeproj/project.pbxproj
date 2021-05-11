@@ -13,6 +13,8 @@
 		0CE3E5EC264A55EA00E754EC /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE3E5EB264A55EA00E754EC /* WelcomeView.swift */; };
 		0CE3E5EE264A560A00E754EC /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE3E5ED264A560A00E754EC /* GameView.swift */; };
 		0CE3E5F0264A561800E754EC /* DiceGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE3E5EF264A561800E754EC /* DiceGame.swift */; };
+		0CE3E5F2264A6EE800E754EC /* GameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE3E5F1264A6EE800E754EC /* GameViewModel.swift */; };
+		0CE3E5F4264A746B00E754EC /* DicesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE3E5F3264A746B00E754EC /* DicesView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		0CE3E5EB264A55EA00E754EC /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = SOURCE_ROOT; };
 		0CE3E5ED264A560A00E754EC /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		0CE3E5EF264A561800E754EC /* DiceGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiceGame.swift; sourceTree = "<group>"; };
+		0CE3E5F1264A6EE800E754EC /* GameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewModel.swift; sourceTree = "<group>"; };
+		0CE3E5F3264A746B00E754EC /* DicesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DicesView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,6 +44,7 @@
 		0CE3E5D0264A55A400E754EC = {
 			isa = PBXGroup;
 			children = (
+				0CE3E5F3264A746B00E754EC /* DicesView.swift */,
 				0CE3E5DB264A55A400E754EC /* RollingTheDice */,
 				0CE3E5DA264A55A400E754EC /* Products */,
 			);
@@ -58,6 +63,7 @@
 			children = (
 				0CE3E5EB264A55EA00E754EC /* WelcomeView.swift */,
 				0CE3E5ED264A560A00E754EC /* GameView.swift */,
+				0CE3E5F1264A6EE800E754EC /* GameViewModel.swift */,
 				0CE3E5EF264A561800E754EC /* DiceGame.swift */,
 				0CE3E5DC264A55A400E754EC /* RollingTheDiceApp.swift */,
 				0CE3E5E0264A55AC00E754EC /* Assets.xcassets */,
@@ -147,6 +153,8 @@
 				0CE3E5F0264A561800E754EC /* DiceGame.swift in Sources */,
 				0CE3E5DD264A55A400E754EC /* RollingTheDiceApp.swift in Sources */,
 				0CE3E5EE264A560A00E754EC /* GameView.swift in Sources */,
+				0CE3E5F4264A746B00E754EC /* DicesView.swift in Sources */,
+				0CE3E5F2264A6EE800E754EC /* GameViewModel.swift in Sources */,
 				0CE3E5EC264A55EA00E754EC /* WelcomeView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

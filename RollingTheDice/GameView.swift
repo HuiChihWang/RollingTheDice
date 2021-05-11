@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct GameView: View {
+    
+    @ObservedObject var gameModel = GameViewModel()
+    
     var body: some View {
         ZStack {
             LinearGradient(gradient: Gradient(colors: [ Color(#colorLiteral(red: 0.3529411765, green: 0.2470588235, blue: 0.2156862745, alpha: 1)), Color(#colorLiteral(red: 0.1725490196, green: 0.4666666667, blue: 0.2666666667, alpha: 1))]), startPoint: .leading, endPoint: .trailing)
@@ -20,16 +23,15 @@ struct GameView: View {
                     .frame(width: 300, height: 200, alignment: .center)
                     .padding(.top, 30)
                 
-                HStack(spacing: 50) {
-                    DiceView(point: 6)
-                    DiceView(point: 4)
-                }
-                .padding(.horizontal, 30)
-                .padding(.vertical, 50)
+                DicesView(dicePoint: gameModel.diceNumber)
+                    .padding(.horizontal, 30)
+                    .padding(.vertical, 50)
                 
                 Spacer()
                 
-                Button(action: {}) {
+                Button(action: {
+                    gameModel.rollDices()
+                }) {
                         Text("Roll The Dice")
                             .font(.system(size: 25, weight: .medium, design: .monospaced))
                             .foregroundColor(.white)
@@ -60,15 +62,4 @@ struct GameView_Previews: PreviewProvider {
     }
 }
 
-struct DiceView: View {
-    let point: Int
-    var body: some View {
-        Image("dice \(point)")
-            .resizable()
-            .aspectRatio(contentMode: .fit)
-            .background(
-                Color.white
-                    .padding(15)
-            )
-    }
-}
+

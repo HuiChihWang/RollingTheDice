@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct GameView: View {
-    
     @ObservedObject var gameModel = GameViewModel()
     
     var body: some View {
@@ -29,26 +28,18 @@ struct GameView: View {
                 
                 Spacer()
                 
-                Button(action: {
-                    gameModel.rollDices()
-                }) {
-                        Text("Roll The Dice")
-                            .font(.system(size: 25, weight: .medium, design: .monospaced))
-                            .foregroundColor(.white)
-                            .padding(20)
-                            .background(Color.red)
-                            .cornerRadius(20)
-                            .padding(10)
-                            .background(
-                                RoundedRectangle(cornerRadius: 20)
-                                    .foregroundColor(.white)
-                                    .overlay(
-                                        RoundedRectangle(cornerRadius: 20)
-                                            .stroke(Color.black, lineWidth: 3.0)
-                                    )
-                            )
+                if !gameModel.isRolling {
+                    GameButtonView(title: "Roll", color: .yellow) {
+                        gameModel.rollDices()
+                    }
+                    .frame(width: 200, height: 100, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                 }
-                .frame(width: 300, height: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                else {
+                    GameButtonView(title: "Stop", color: .red) {
+                        gameModel.stopRolling()
+                    }
+                    .frame(width: 200, height: 100, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                }
                 
                 Spacer()
             }
@@ -63,3 +54,30 @@ struct GameView_Previews: PreviewProvider {
 }
 
 
+
+struct GameButtonView: View {
+    let title: String
+    let color: Color
+    let action: () -> Void
+    
+    var body: some View {
+        Button(action: action) {
+            RoundedRectangle(cornerRadius: 20)
+                .foregroundColor(color)
+                .padding(10)
+                .background(
+                    RoundedRectangle(cornerRadius: 20)
+                        .foregroundColor(.white)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 20)
+                                .stroke(Color.black, lineWidth: 3.0)
+                        )
+                )
+                .overlay(
+                    Text(title)
+                        .font(.system(size: 30, weight: .semibold, design: .monospaced))
+                        .foregroundColor(.white)
+                )
+        }
+    }
+}

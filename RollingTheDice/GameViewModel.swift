@@ -10,6 +10,7 @@ import Foundation
 class GameViewModel: ObservableObject {
     private var game: DiceGame
     
+    @Published var isRolling: Bool = false
     @Published var diceNumber: [Int]
     
     init() {
@@ -18,7 +19,19 @@ class GameViewModel: ObservableObject {
     }
     
     public func rollDices() {
-        game.rollDices()
-        diceNumber = game.dicesNumber
+        isRolling = true
+        
+        DispatchQueue.global().async { [self] in
+            while (isRolling) {
+                DispatchQueue.main.async {
+                    game.rollDices()
+                    diceNumber = game.dicesNumber
+                }
+            }
+        }
+    }
+    
+    public func stopRolling() {
+        isRolling = false
     }
 }

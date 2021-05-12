@@ -44,6 +44,7 @@ struct GameView: View {
                 Spacer()
             }
         }
+        .navigationBarHidden(true)
     }
 }
 

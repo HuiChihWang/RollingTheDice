@@ -8,9 +8,10 @@
 import SwiftUI
 
 struct WelcomeView: View {
-    @State var userName: String = ""
-    @State var isShowGameView = false
-    
+    @State private var userName: String = ""
+    @State private var isShowGameView = false
+    @EnvironmentObject private var gameModel: GameViewModel
+        
     var body: some View {
         NavigationView {
             VStack {
@@ -38,8 +39,11 @@ struct WelcomeView: View {
                     .padding(.bottom, 10)
                 
                 if !userName.isEmpty {
-                    NavigationLink(destination: GameView(), isActive: $isShowGameView) {
+                    NavigationLink(
+                        destination: GameView(),
+                        isActive: $isShowGameView) {
                         PlayButtonView {
+                            gameModel.loadUser(name: userName)
                             self.isShowGameView = true
                         }
                     }

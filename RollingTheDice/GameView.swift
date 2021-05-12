@@ -22,6 +22,9 @@ struct GameView: View {
                     .frame(width: 300, height: 200, alignment: .center)
                     .padding(.top, 30)
                 
+                UserView(user: gameModel.currentPlayer)
+                    .frame(width: 250, height: 100, alignment: .center)
+                
                 DicesView(dicePoint: gameModel.diceNumber)
                     .padding(.horizontal, 30)
                     .padding(.vertical, 50)
@@ -45,12 +48,6 @@ struct GameView: View {
             }
         }
         .navigationBarHidden(true)
-    }
-}
-
-struct GameView_Previews: PreviewProvider {
-    static var previews: some View {
-        GameView()
     }
 }
 
@@ -80,5 +77,44 @@ struct GameButtonView: View {
                         .foregroundColor(.white)
                 )
         }
+    }
+}
+
+struct UserView: View {
+    let user: User
+    var body: some View {
+        ZStack {
+            RoundedRectangle(cornerRadius: 25.0)
+                .foregroundColor(.blue)
+            
+            VStack {
+                HStack(spacing: 20) {
+                    Image(systemName: "person")
+                        .resizable()
+                        .scaledToFill()
+                        .background(Color.gray)
+                        .clipShape(Circle())
+                        .frame(width: 60, height: 60)
+                        .overlay(
+                            Circle()
+                                .stroke(Color.white, lineWidth: 3)
+                        )
+                        
+                    Text("Gilbert")
+                        .font(.system(size: 30, weight: .bold, design: .monospaced))
+
+                }
+                .padding(.bottom, 10)
+                
+                Text("You've already got \(user.highestPoint) points")
+            }
+            .padding(10)
+        }
+    }
+}
+
+struct GameView_Previews: PreviewProvider {
+    static var previews: some View {
+        GameView()
     }
 }

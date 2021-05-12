@@ -32,11 +32,10 @@ struct WelcomeView: View {
                     .font(.system(size: 45, weight: .bold, design: .rounded))
                     .foregroundColor(.red)
                 
-                TextField("Enter User Name", text: $userName)
-                    .modifier(ResponsiveTextFieldModifier(isInputValid: !userName.isEmpty))
-                    .modifier(ClearButton(text: $userName))
+                ResponsiveTextFieldView(placeHolder: "Enter User Name", input: $userName)
                     .frame(width: 350)
                     .padding(.bottom, 10)
+
                 
                 if !userName.isEmpty {
                     NavigationLink(
@@ -50,43 +49,6 @@ struct WelcomeView: View {
                 }
             }
         }
-    }
-}
-
-struct ClearButton: ViewModifier {
-    @Binding var text: String
-    func body(content: Content) -> some View {
-        ZStack {
-            content
-            
-            if !text.isEmpty {
-                HStack() {
-                    Spacer()
-                    Button(action: {
-                        text = ""
-                    }) {
-                        Image(systemName: "xmark.circle")
-                            .font(.system(size: 20))
-                            .foregroundColor(.gray)
-                    }
-                    .padding(.trailing, 10)
-                }
-            }
-        }
-    }
-}
-
-struct ResponsiveTextFieldModifier: ViewModifier {
-    var isInputValid = false
-    
-    func body(content: Content) -> some View {
-        content
-            .padding(EdgeInsets(top: 10, leading: 15, bottom: 10, trailing:15))
-            .overlay(
-                RoundedRectangle(cornerRadius: 25.0)
-                    .stroke(lineWidth: 3)
-                    .foregroundColor(isInputValid ? .blue : .gray)
-            )
     }
 }
 

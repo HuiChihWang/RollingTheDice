@@ -8,8 +8,11 @@
 import Foundation
 
 struct User: Identifiable {
-    let name: String
+    var name: String
     var highestPoint: Int = 0
+    
+    var gender: Gender = .male
+    var birthDay: Date = Date()
     
     var imageURL: URL? {
         URL(string: "https://picsum.photos/200")
@@ -19,7 +22,16 @@ struct User: Identifiable {
         self.name = name
     }
     
-    var id = UUID()
+    let id = UUID()
+}
+
+enum Gender: String, CaseIterable {
+    case male = "Male"
+    case female = "Female"
+    
+    static func randomGender() -> Gender {
+        Gender.allCases.randomElement()!
+    }
 }
 
 class Users: ObservableObject{
@@ -77,6 +89,8 @@ extension Users {
         (0..<numberOfUsers).forEach { _ in
             var user = users.loadUser(name: randomString(length: Int.random(in: 0..<8)))
             user.highestPoint = Int.random(in: 2...12)
+            user.birthDay = randomDate()
+            user.gender = Gender.randomGender()
             users.updateUser(user: user)
         }
         
@@ -86,5 +100,17 @@ extension Users {
     private static func randomString(length: Int) -> String {
         let letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
       return String((0..<length).map{ _ in letters.randomElement()! })
+    }
+    
+    
+    private static func randomDate() -> Date {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        
+        let start = formatter.date(from: "1970-01-01")!
+        let end = formatter.date(from: "2005-12-31")!
+        
+        let randomTime = TimeInterval.random(in: start.timeIntervalSinceNow...end.timeIntervalSinceNow)
+        return Date(timeIntervalSinceNow: randomTime)
     }
 }

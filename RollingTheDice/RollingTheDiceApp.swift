@@ -11,8 +11,11 @@ import SwiftUI
 struct RollingTheDiceApp: App {
     var body: some Scene {
         WindowGroup {
-            WelcomeView()
-                .environmentObject(GameViewModel())
+//            WelcomeView()
+//                .environmentObject(GameViewModel())
+            
+            UserListView()
+                .environmentObject(Users.generateRandomUsers(numberOfUsers: 12))
         }
     }
 }

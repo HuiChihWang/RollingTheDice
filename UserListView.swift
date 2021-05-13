@@ -9,12 +9,16 @@ import SwiftUI
 
 struct UserListView: View {
     @EnvironmentObject var users: Users
+    @State private var showDetail = false
     
     var body: some View {
         NavigationView {
             List {
                 ForEach(users.users) { user in
-                    NavigationLink(destination: EmptyView()) {
+                    NavigationLink(
+                        destination: UserDetailView(user: user, showDetail: $showDetail)
+                        ,isActive: $showDetail
+                    ) {
                         UserInfoView(user: user)
                     }
                 }
